@@ -1,7 +1,7 @@
--- index.sql
+-- index.sql (tables en pluriel, bonnes pratiques)
 
--- Table User
-CREATE TABLE IF NOT EXISTS User (
+-- Table Users
+CREATE TABLE IF NOT EXISTS Users (
     UserId INTEGER PRIMARY KEY AUTOINCREMENT,
     FirstName TEXT NOT NULL,
     LastName TEXT NOT NULL,
@@ -10,29 +10,29 @@ CREATE TABLE IF NOT EXISTS User (
     Phone TEXT
 );
 
--- Table Category
-CREATE TABLE IF NOT EXISTS Category (
+-- Table Categories
+CREATE TABLE IF NOT EXISTS Categories (
     CategoryId INTEGER PRIMARY KEY AUTOINCREMENT,
     CategoryName TEXT NOT NULL
 );
 
--- Table Product
-CREATE TABLE IF NOT EXISTS Product (
+-- Table Products
+CREATE TABLE IF NOT EXISTS Products (
     ProductId INTEGER PRIMARY KEY AUTOINCREMENT,
     ProductName TEXT NOT NULL,
     Price REAL NOT NULL,
     Stock INTEGER DEFAULT 0,
     Description TEXT,
     CategoryId INTEGER,
-    FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
+    FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId)
 );
 
--- Table Order
-CREATE TABLE IF NOT EXISTS "Order" (
+-- Table Orders
+CREATE TABLE IF NOT EXISTS Orders (
     OrderId INTEGER PRIMARY KEY AUTOINCREMENT,
     UserId INTEGER,
     OrderDate TEXT NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES User(UserId)
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
 );
 
 -- Table Order_Details
@@ -42,29 +42,29 @@ CREATE TABLE IF NOT EXISTS Order_Details (
     ProductId INTEGER,
     Quantity INTEGER NOT NULL,
     UnitPrice REAL NOT NULL,
-    FOREIGN KEY (OrderId) REFERENCES "Order"(OrderId),
-    FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
+    FOREIGN KEY (OrderId) REFERENCES Orders(OrderId),
+    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
 -- Table Reviews
 CREATE TABLE IF NOT EXISTS Reviews (
-    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ReviewId INTEGER PRIMARY KEY AUTOINCREMENT,
     UserId INTEGER,
     ProductId INTEGER,
     Rating INTEGER,
     Comment TEXT,
     Created_At TEXT,
-    FOREIGN KEY (UserId) REFERENCES User(UserId),
-    FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
+    FOREIGN KEY (UserId) REFERENCES Users(UserId),
+    FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
--- Table Payment
-CREATE TABLE IF NOT EXISTS Payment (
+-- Table Payments
+CREATE TABLE IF NOT EXISTS Payments (
     PaymentId INTEGER PRIMARY KEY AUTOINCREMENT,
     OrderId INTEGER,
     PaymentMethod TEXT,
     Amount REAL,
     PaymentDate TEXT,
     Status TEXT,
-    FOREIGN KEY (OrderId) REFERENCES "Order"(OrderId)
+    FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
 );

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import create_database_from_sql
-import crud.user as user
+from routers import users
 
 app = FastAPI()
 
@@ -30,25 +30,7 @@ def startup_event():
 def root():
     return {"message": "API fonctionne !"}
 
-@app.get("/users")
-def read_users():
-    return user.get_users()
 
-@app.get("/users/{user_id}")
-def read_user(user_id: int):
-    return user.get_user(user_id)
-
-@app.post("/users")
-def add_user(firstname: str, lastname: str, email: str, address: str = None, phone: str = None):
-    return {"UserId": user.create_user(firstname, lastname, email, address, phone)}
-
-@app.put("/users/{user_id}")
-def update_user(user_id: int, firstname: str, lastname: str, email: str, address: str = None, phone: str = None):
-    user.update_user(user_id, firstname, lastname, email, address, phone)
-    return {"message": "User updated"}
-
-@app.delete("/users/{user_id}")
-def delete_user(user_id: int):
-    user.delete_user(user_id)
-    return {"message": "User deleted"}
+# 🔥 inclusion des routes
+app.include_router(users.router)
 
