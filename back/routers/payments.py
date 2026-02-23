@@ -8,12 +8,10 @@ router = APIRouter(
     tags=["Payments"]
 )
 
-
 # GET ALL
 @router.get("/")
 def read_payments():
     return payment_crud.get_payments()
-
 
 # GET BY ID
 @router.get("/{payment_id}")
@@ -22,7 +20,6 @@ def read_payment(payment_id: int):
     if not payment:
         raise HTTPException(status_code=404, detail="Payment not found")
     return payment
-
 
 # CREATE
 @router.post("/")
@@ -35,7 +32,6 @@ def create_payment_route(payment: PaymentRequest):
         payment.Status
     )
     return {"message": "Payment created", "id": payment_id}
-
 
 # UPDATE
 @router.put("/{payment_id}")
@@ -53,7 +49,6 @@ def update_payment_route(payment_id: int, payment: PaymentRequest):
         payment.Status
     )
     return {"message": "Payment updated"}
-
 
 # DELETE
 @router.delete("/{payment_id}")
