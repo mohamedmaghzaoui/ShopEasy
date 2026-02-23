@@ -7,18 +7,19 @@ export const Products = () => {
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
     ProductName: "",
-    Price: 0,
-    Stock: 0,
+    Price: NaN,
+    Stock: NaN,
     Description: "",
-    CategoryId: ""
+    CategoryId: NaN
   });
   const [editingId, setEditingId] = useState(null);
-  const apiUrl = "http://127.0.0.1:8000/products/with-categories";
+  const productApi = "http://127.0.0.1:8000/products/";
+  const fetchUrl = "http://127.0.0.1:8000/products/with-categories";
 
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(apiUrl);
+      const res = await axios.get(fetchUrl);
       setProducts(res.data);
     } catch (err) {
       console.error(err);
@@ -29,19 +30,19 @@ export const Products = () => {
     fetchProducts();
   }, []);
 
-  // -------- Handle input --------
+  
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // -------- Create or Update --------
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`${apiUrl}/${editingId}`, form);
+        await axios.put(`${productApi}${editingId}`, form);
       } else {
-        await axios.post(apiUrl, form);
+        await axios.post(productApi, form);
       }
       setForm({ ProductName: "", Price: 0, Stock: 0, Description: "", CategoryId: "" });
       setEditingId(null);
@@ -51,7 +52,7 @@ export const Products = () => {
     }
   };
 
-  // -------- Edit --------
+  
   const handleEdit = (product) => {
     setForm({
       ProductName: product.ProductName,
@@ -63,11 +64,11 @@ export const Products = () => {
     setEditingId(product.ProductId);
   };
 
-  // -------- Delete --------
+  
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure?")) return;
     try {
-      await axios.delete(`${apiUrl}/${id}`);
+      await axios.delete(`${productApi}${id}`);
       fetchProducts();
     } catch (err) {
       console.error(err);
@@ -81,10 +82,10 @@ export const Products = () => {
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-2">
           <div className="col-md-4">
-            <input type="text" className="form-control" placeholder="Name" name="ProductName" value={form.ProductName} onChange={handleChange} required />
+            <input required type="text" className="form-control" placeholder="Name" name="ProductName" value={form.ProductName} onChange={handleChange}  />
           </div>
           <div className="col-md-2">
-            <input type="number" className="form-control" placeholder="Price" name="Price" value={form.Price} onChange={handleChange} required />
+            <input required type="number" className="form-control" placeholder="Price" name="Price" value={form.Price} onChange={handleChange}  />
           </div>
           <div className="col-md-2">
             <input type="number" className="form-control" placeholder="Stock" name="Stock" value={form.Stock} onChange={handleChange} />
@@ -95,7 +96,7 @@ export const Products = () => {
         </div>
         <div className="row g-2 mt-2">
           <div className="col-md-2">
-            <input type="number" className="form-control" placeholder="CategoryId" name="CategoryId" value={form.CategoryId} onChange={handleChange} />
+            <input required type="number" className="form-control" placeholder="CategoryId" name="CategoryId" value={form.CategoryId} onChange={handleChange} />
           </div>
           <div className="col-md-2">
             <button type="submit" className="btn btn-primary">{editingId ? "Update" : "Add"}</button>
@@ -108,7 +109,7 @@ export const Products = () => {
         </div>
       </form>
 
-      <h3>Products List</h3>
+      <h3>Products Acec categories</h3>
       <table className="table table-bordered">
         <thead className="table-light">
           <tr>

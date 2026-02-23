@@ -28,7 +28,7 @@ def read_product(product_id: int):
 
 @router.post("/")
 def add_product(product: ProductRequest):
-    product.create_product(
+    product_crud.create_product(
         product.ProductName,
         product.Price,
         product.Stock,
