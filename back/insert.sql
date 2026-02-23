@@ -1,4 +1,4 @@
---PRAGMA foreign_keys = ON;
+PRAGMA foreign_keys = ON;
 
 
 INSERT INTO Users (FirstName, LastName, Email, Address, Phone) VALUES
@@ -8,12 +8,11 @@ INSERT INTO Users (FirstName, LastName, Email, Address, Phone) VALUES
 ('Sophie', 'Martin', 'sophie@mail.com', 'Toulouse', '0645678912');
 
 
-
-
-INSERT INTO Orders (UserId, OrderDate) VALUES
-(1, '2026-02-20'),
-(2, '2026-02-21'),
-(3, '2026-02-21');
+INSERT INTO Categories (CategoryName) VALUES
+('Informatique'),
+('Téléphone'),
+('Accessoires'),
+('Gaming');
 
 
 INSERT INTO Products (ProductName, Price, Stock, Description, CategoryId) VALUES
@@ -24,14 +23,10 @@ INSERT INTO Products (ProductName, Price, Stock, Description, CategoryId) VALUES
 ('Ecran 24 pouces', 149.99, 12, 'Full HD monitor', 1);
 
 
-
-INSERT INTO Categories (CategoryName) VALUES
-('Informatique'),
-('Téléphone'),
-('Accessoires'),
-('Gaming');
-
-
+INSERT INTO Orders (UserId, OrderDate) VALUES
+(1, '2026-02-20'),
+(2, '2026-02-21'),
+(3, '2026-02-21');
 
 INSERT INTO Order_Details (OrderId, ProductId, Quantity, UnitPrice) VALUES
 (1, 1, 1, 899.99),
@@ -52,5 +47,3 @@ INSERT INTO Reviews (UserId, ProductId, Rating, Comment, Created_At) VALUES
 (2, 2, 4, 'Très bon téléphone', '2026-02-21'),
 (3, 3, 4, 'Bonne souris', '2026-02-20'),
 (4, 4, 5, 'Parfait pour le gaming', '2026-02-19');
-
-
