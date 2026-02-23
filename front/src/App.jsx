@@ -2,8 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AppNavbar } from "../AppNavbar";
 
-// Importer tes composants de pages
+
 import { Users } from "./pages/User";
+import { Categories } from "./pages/Categories";
+import { Products } from "./pages/Products";
+import { Orders } from "./pages/Orders";
 
 export default function App() {
   return (
@@ -12,7 +15,10 @@ export default function App() {
       <div className="container mt-3">
         <Routes>
           <Route path="/users" element={<Users />} />
-          <Route path="/" element={<h2>Welcome to MyApp</h2>} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/" element={<h2>Home page</h2>} />
         </Routes>
       </div>
     </Router>

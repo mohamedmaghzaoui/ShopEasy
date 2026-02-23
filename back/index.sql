@@ -1,6 +1,6 @@
--- index.sql (tables en pluriel, bonnes pratiques)
 
--- Table Users
+
+-- Users table
 CREATE TABLE IF NOT EXISTS Users (
     UserId INTEGER PRIMARY KEY AUTOINCREMENT,
     FirstName TEXT NOT NULL,
@@ -10,13 +10,13 @@ CREATE TABLE IF NOT EXISTS Users (
     Phone TEXT
 );
 
--- Table Categories
+-- categories table
 CREATE TABLE IF NOT EXISTS Categories (
     CategoryId INTEGER PRIMARY KEY AUTOINCREMENT,
     CategoryName TEXT NOT NULL
 );
 
--- Table Products
+-- products table
 CREATE TABLE IF NOT EXISTS Products (
     ProductId INTEGER PRIMARY KEY AUTOINCREMENT,
     ProductName TEXT NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Products (
     FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId)
 );
 
--- Table Orders
+-- orders table
 CREATE TABLE IF NOT EXISTS Orders (
     OrderId INTEGER PRIMARY KEY AUTOINCREMENT,
     UserId INTEGER,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (UserId) REFERENCES Users(UserId)
 );
 
--- Table Order_Details
+-- order_details tablle
 CREATE TABLE IF NOT EXISTS Order_Details (
     OrderDetailsId INTEGER PRIMARY KEY AUTOINCREMENT,
     OrderId INTEGER,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Order_Details (
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
--- Table Reviews
+-- review 
 CREATE TABLE IF NOT EXISTS Reviews (
     ReviewId INTEGER PRIMARY KEY AUTOINCREMENT,
     UserId INTEGER,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
--- Table Payments
+--  Payments
 CREATE TABLE IF NOT EXISTS Payments (
     PaymentId INTEGER PRIMARY KEY AUTOINCREMENT,
     OrderId INTEGER,

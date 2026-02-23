@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from database import create_database_from_sql
-from routers import users
+from routers import users,categories,products,orders
 
 app = FastAPI()
 
@@ -24,13 +25,16 @@ app.add_middleware(
 @app.on_event("startup")
 def startup_event():
     create_database_from_sql("index.sql")
-    print("Base de données créée ou mise à jour depuis index.sql")
+    print("Base de données créée ou mise à jour avec index.sql")
     
 @app.get("/")
 def root():
     return {"message": "API fonctionne !"}
 
 
-# 🔥 inclusion des routes
+# routes users
 app.include_router(users.router)
+app.include_router(categories.router)
+app.include_router(products.router)
+app.include_router(orders.router)
 

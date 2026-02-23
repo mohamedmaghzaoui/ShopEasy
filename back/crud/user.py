@@ -11,7 +11,8 @@ def get_user(user_id):
     conn = get_connection()
     user = conn.execute("SELECT * FROM Users WHERE UserId=?", (user_id,)).fetchone()
     conn.close()
-    return dict(user) if user else None
+    if user:
+        return dict(user)
 
 def create_user(firstname, lastname, email, address=None, phone=None):
     conn = get_connection()
@@ -21,9 +22,8 @@ def create_user(firstname, lastname, email, address=None, phone=None):
         (firstname, lastname, email, address, phone)
     )
     conn.commit()
-    user_id = cursor.lastrowid
     conn.close()
-    return user_id
+
 
 def update_user(user_id, firstname, lastname, email, address=None, phone=None):
     conn = get_connection()
