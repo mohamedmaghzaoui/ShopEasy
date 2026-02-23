@@ -14,7 +14,6 @@ export const Payments = () => {
 
   const BASE_URL = "http://127.0.0.1:8000/payments";
 
-  // Charger les paiements
   const fetchPayments = async () => {
     try {
       const res = await axios.get(BASE_URL);
@@ -28,22 +27,23 @@ export const Payments = () => {
     fetchPayments();
   }, []);
 
-  // Ajouter / modifier paiement
   const savePayment = async () => {
     const payload = {
       ...payment,
       OrderId: parseInt(payment.OrderId),
       Amount: parseFloat(payment.Amount),
-      PaymentDate: payment.PaymentDate ? new Date(payment.PaymentDate).toISOString() : new Date().toISOString()
+      PaymentDate: payment.PaymentDate
+        ? new Date(payment.PaymentDate).toISOString()
+        : new Date().toISOString()
     };
 
     try {
       if (editId) {
         await axios.put(`${BASE_URL}/${editId}`, payload);
-        setEditId(null);
       } else {
         await axios.post(BASE_URL, payload);
       }
+      setEditId(null);
       setPayment({ OrderId: "", PaymentMethod: "", Amount: "", PaymentDate: "", Status: "" });
       fetchPayments();
     } catch (err) {
@@ -70,40 +70,15 @@ export const Payments = () => {
     <div className="container mt-4">
       <h3>Payments List</h3>
 
-      {/* Formulaire d'ajout / édition */}
-      <div className="mb-3">
-        <input
-          type="number"
-          placeholder="OrderId"
-          value={payment.OrderId}
-          onChange={(e) => setPayment({ ...payment, OrderId: e.target.value })}
-        />
-        <input
-          placeholder="Payment Method"
-          value={payment.PaymentMethod}
-          onChange={(e) => setPayment({ ...payment, PaymentMethod: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Amount"
-          value={payment.Amount}
-          onChange={(e) => setPayment({ ...payment, Amount: e.target.value })}
-        />
-        <input
-          type="datetime-local"
-          placeholder="Payment Date"
-          value={payment.PaymentDate}
-          onChange={(e) => setPayment({ ...payment, PaymentDate: e.target.value })}
-        />
-        <input
-          placeholder="Status"
-          value={payment.Status}
-          onChange={(e) => setPayment({ ...payment, Status: e.target.value })}
-        />
-        <button onClick={savePayment} className="btn btn-primary ml-2">{editId ? "Update" : "Add"}</button>
+      <div className="mb-3 d-flex gap-2 flex-wrap">
+        <input type="number" placeholder="OrderId" value={payment.OrderId} onChange={e => setPayment({ ...payment, OrderId: e.target.value })} />
+        <input placeholder="Payment Method" value={payment.PaymentMethod} onChange={e => setPayment({ ...payment, PaymentMethod: e.target.value })} />
+        <input type="number" placeholder="Amount" value={payment.Amount} onChange={e => setPayment({ ...payment, Amount: e.target.value })} />
+        <input type="datetime-local" placeholder="Payment Date" value={payment.PaymentDate} onChange={e => setPayment({ ...payment, PaymentDate: e.target.value })} />
+        <input placeholder="Status" value={payment.Status} onChange={e => setPayment({ ...payment, Status: e.target.value })} />
+        <button onClick={savePayment} className="btn btn-primary">{editId ? "Update" : "Add"}</button>
       </div>
 
-      {/* Tableau des paiements */}
       <table className="table table-bordered table-hover">
         <thead>
           <tr>
@@ -118,9 +93,7 @@ export const Payments = () => {
         </thead>
         <tbody>
           {payments.length === 0 ? (
-            <tr>
-              <td colSpan="7" className="text-center">No payments found</td>
-            </tr>
+            <tr><td colSpan="7" className="text-center">No payments found</td></tr>
           ) : (
             payments.map((p) => (
               <tr key={p.PaymentId}>
@@ -131,7 +104,7 @@ export const Payments = () => {
                 <td>{new Date(p.PaymentDate).toLocaleString()}</td>
                 <td>{p.Status || "Unpaid"}</td>
                 <td>
-                  <button onClick={() => editPayment(p)} className="btn btn-sm btn-warning mr-2">Edit</button>
+                  <button onClick={() => editPayment(p)} className="btn btn-sm btn-warning me-2">Edit</button>
                   <button onClick={() => deletePayment(p.PaymentId)} className="btn btn-sm btn-danger">Delete</button>
                 </td>
               </tr>
