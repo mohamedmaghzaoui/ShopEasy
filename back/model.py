@@ -22,7 +22,20 @@ class ProductRequest(BaseModel):
     Description: Optional[str] = None
     CategoryId: Optional[int] = None
 
+class ReviewRequest(BaseModel):
+    UserId: int
+    ProductId: int
+    Rating: int
+    Comment: Optional[str] = None
+    Created_At: Optional[datetime] = None
 
+
+class PaymentRequest(BaseModel):
+    OrderId: int
+    PaymentMethod: str
+    Amount: float
+    PaymentDate: Optional[datetime] = None
+    Status: str
 # class OrderRequest(BaseModel):
 #     UserId: Optional[int] = None
 #     OrderDate: str
