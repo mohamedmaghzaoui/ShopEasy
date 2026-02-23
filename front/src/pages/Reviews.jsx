@@ -1,4 +1,3 @@
-// Reviews.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -15,7 +14,7 @@ export const Reviews = () => {
 
   const BASE_URL = "http://127.0.0.1:8000/reviews";
 
-  // Charger les reviews
+  // Charger toutes les reviews
   const fetchReviews = async () => {
     try {
       const res = await axios.get(BASE_URL);
@@ -37,7 +36,9 @@ export const Reviews = () => {
         UserId: parseInt(review.UserId),
         ProductId: parseInt(review.ProductId),
         Rating: parseInt(review.Rating),
-        Created_At: review.Created_At ? new Date(review.Created_At).toISOString() : new Date().toISOString()
+        Created_At: review.Created_At
+          ? new Date(review.Created_At).toISOString()
+          : new Date().toISOString()
       };
 
       if (editId) {
@@ -54,6 +55,7 @@ export const Reviews = () => {
     }
   };
 
+  // Supprimer une review
   const deleteReview = async (id) => {
     try {
       await axios.delete(`${BASE_URL}/${id}`);
@@ -63,9 +65,10 @@ export const Reviews = () => {
     }
   };
 
+  // Préparer la review pour édition
   const editReview = (r) => {
-    setEditId(r.Id);
-    const localDate = r.Created_At ? new Date(r.Created_At).toISOString().slice(0,16) : "";
+    setEditId(r.ReviewId); // Correction ici
+    const localDate = r.Created_At ? new Date(r.Created_At).toISOString().slice(0, 16) : "";
     setReview({ ...r, Created_At: localDate });
   };
 
@@ -73,8 +76,8 @@ export const Reviews = () => {
     <div className="container mt-4">
       <h3>Reviews List</h3>
 
-      {/* Formulaire */}
-      <div className="mb-3">
+      {/* Formulaire d'ajout / édition */}
+      <div className="mb-3 d-flex gap-2 flex-wrap">
         <input
           type="number"
           placeholder="UserId"
@@ -104,7 +107,7 @@ export const Reviews = () => {
           value={review.Created_At}
           onChange={(e) => setReview({ ...review, Created_At: e.target.value })}
         />
-        <button onClick={saveReview} className="btn btn-primary ml-2">{editId ? "Update" : "Add"}</button>
+        <button onClick={saveReview} className="btn btn-primary">{editId ? "Update" : "Add"}</button>
       </div>
 
       {/* Tableau des reviews */}
@@ -127,16 +130,16 @@ export const Reviews = () => {
             </tr>
           ) : (
             reviews.map((r) => (
-              <tr key={r.Id}>
-                <td>{r.Id}</td>
+              <tr key={r.ReviewId}>
+                <td>{r.ReviewId}</td>
                 <td>{r.UserId}</td>
                 <td>{r.ProductId}</td>
                 <td>{r.Rating}⭐</td>
                 <td>{r.Comment}</td>
                 <td>{new Date(r.Created_At).toLocaleString()}</td>
                 <td>
-                  <button onClick={() => editReview(r)} className="btn btn-sm btn-warning mr-2">Edit</button>
-                  <button onClick={() => deleteReview(r.Id)} className="btn btn-sm btn-danger">Delete</button>
+                  <button onClick={() => editReview(r)} className="btn btn-sm btn-warning me-2">Edit</button>
+                  <button onClick={() => deleteReview(r.ReviewId)} className="btn btn-sm btn-danger">Delete</button>
                 </td>
               </tr>
             ))
