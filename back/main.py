@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import create_database_from_sql
-from routers import users,categories,products,orders
+from routers import users,categories,products,orders,payments,reviews
 
 app = FastAPI()
 
@@ -37,4 +37,5 @@ app.include_router(users.router)
 app.include_router(categories.router)
 app.include_router(products.router)
 app.include_router(orders.router)
-
+app.include_router(reviews.router)
+app.include_router(payments.router)

@@ -28,6 +28,7 @@ INSERT INTO Orders (UserId, OrderDate) VALUES
 (2, '2026-02-21'),
 (3, '2026-02-21');
 
+
 INSERT INTO Order_Details (OrderId, ProductId, Quantity, UnitPrice) VALUES
 (1, 1, 1, 899.99),
 (1, 3, 2, 25.50),
