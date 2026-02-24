@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Order_Details (
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
--- review 
+-- reviews 
 CREATE TABLE IF NOT EXISTS Reviews (
     ReviewId INTEGER PRIMARY KEY AUTOINCREMENT,
     UserId INTEGER,
