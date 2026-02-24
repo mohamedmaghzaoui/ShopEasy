@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Categories (
     CategoryName TEXT NOT NULL
 );
 
--- products table
+-- products tablex
 CREATE TABLE IF NOT EXISTS Products (
     ProductId INTEGER PRIMARY KEY AUTOINCREMENT,
     ProductName TEXT NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Order_Details (
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 );
 
--- review 
+-- reviews 
 CREATE TABLE IF NOT EXISTS Reviews (
     ReviewId INTEGER PRIMARY KEY AUTOINCREMENT,
     UserId INTEGER,

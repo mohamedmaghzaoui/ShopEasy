@@ -32,6 +32,7 @@ export const Orders = () => {
             <th>Total (€)</th>
             <th>Total Items</th>
             <th>Status</th>
+            <th>PaymentMethod</th>
           </tr>
         </thead>
 
@@ -46,11 +47,12 @@ export const Orders = () => {
             orders.map((order) => (
               <tr key={order.OrderId}>
                 <td>{order.OrderId}</td>
-                <td>{order.CustomerName}</td>
+                <td>{order.FirstName}</td>
                 <td>{order.OrderDate}</td>
                 <td>{order.TotalAmount} €</td>
                 <td>{order.TotalItems}</td>
                 <td>{order.PaymentStatus || "Unpaid"}</td>
+                <td>{order.PaymentMethod || "-"}</td>
               </tr>
             ))
           )}

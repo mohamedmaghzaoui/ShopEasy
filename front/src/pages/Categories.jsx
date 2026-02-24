@@ -5,10 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
+  const [categoriesQuery, setCategoriesQuery] = useState([]);
   const [form, setForm] = useState({ CategoryName: "" });
   const [editingId, setEditingId] = useState(null);
 
   const categoryUrl = "http://127.0.0.1:8000/categories";
+  const categoryQueryUrl = "http://127.0.0.1:8000/categories/with-more-than-three-products";
 
 
   const fetchCategories = async () => {
@@ -16,12 +18,21 @@ export const Categories = () => {
       const res = await axios.get(categoryUrl);
       setCategories(res.data);
     } catch (err) {
-      console.error(err);
+     alert("error")
+    }
+  };
+  const fetchCategoriesQuery = async () => {
+    try {
+      const res = await axios.get(categoryQueryUrl);
+      setCategoriesQuery(res.data);
+    } catch (err) {
+      alert("error")
     }
   };
 
   useEffect(() => {
     fetchCategories();
+    fetchCategoriesQuery();
   }, []);
 
 
@@ -41,8 +52,9 @@ export const Categories = () => {
       setForm({ CategoryName: "" });
       setEditingId(null);
       fetchCategories();
+      
     } catch (err) {
-      console.error(err);
+      alert("error")
     }
   };
 
@@ -59,7 +71,7 @@ export const Categories = () => {
       await axios.delete(`${categoryUrl}/${id}`);
       fetchCategories();
     } catch (err) {
-      console.error(err);
+      alert("error")
     }
   };
 
@@ -128,6 +140,30 @@ export const Categories = () => {
                   Delete
                 </button>
               </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+
+
+      <h3>Categories avec plus de 3 produits</h3>
+      <table className="table table-bordered">
+        <thead className="table-light">
+          <tr>
+              <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Total Products</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {categoriesQuery.map(cat => (
+            <tr key={cat.CategoryId}>
+              <td>{cat.CategoryId}</td>
+              <td>{cat.CategoryName}</td>
+              <td>{cat.totalProducts}</td>
+       
             </tr>
           ))}
         </tbody>

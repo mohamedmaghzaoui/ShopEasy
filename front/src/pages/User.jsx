@@ -17,7 +17,7 @@ export const Users = () => {
       const res = await axios.get(UsersUrl);
       setUsers(res.data);
     } catch (err) {
-      console.error(err);
+      alert("error")
     }
   };
 
@@ -26,7 +26,7 @@ export const Users = () => {
       const res = await axios.get(UsersWithoutOrdersUrl);
       setUsersWithoutOrders(res.data);
     } catch (err) {
-      console.error(err);
+      alert("error")
     }
   };
   useEffect(() => {

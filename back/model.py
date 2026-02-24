@@ -36,29 +36,11 @@ class PaymentRequest(BaseModel):
     Amount: float
     PaymentDate: Optional[datetime] = None
     Status: str
-# class OrderRequest(BaseModel):
-#     UserId: Optional[int] = None
-#     OrderDate: str
+    
+class OrderRequest(BaseModel):
+    UserId: int
+    ProductId: int
+    Quantity: int
+    PaymentMethod: str
 
 
-# class OrderDetailRequest(BaseModel):
-#     OrderId: Optional[int] = None
-#     ProductId: Optional[int] = None
-#     Quantity: int
-#     UnitPrice: float
-
-
-# class ReviewRequest(BaseModel):
-#     UserId: Optional[int] = None
-#     ProductId: Optional[int] = None
-#     Rating: Optional[int] = None
-#     Comment: Optional[str] = None
-#     Created_At: Optional[str] = None
-
-
-# class PaymentRequest(BaseModel):
-#     OrderId: Optional[int] = None
-#     PaymentMethod: Optional[str] = None
-#     Amount: Optional[float] = None
-#     PaymentDate: Optional[str] = None
-#     Status: Optional[str] = None

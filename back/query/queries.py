@@ -17,21 +17,44 @@ def get_users_without_order():
 
 def get_orders():
     conn = get_connection()
-    orders = conn.execute(""" SELECT 
+    orders = conn.execute(""" select 
     o.OrderId,
     o.OrderDate,
     u.FirstName,
     u.LastName,
-    SUM(od.Quantity * od.UnitPrice) AS TotalAmount,
-    SUM(od.Quantity) AS TotalItems,
-    p.Status AS PaymentStatus
-FROM Orders o
-JOIN Users u 
-    ON o.UserId = u.UserId
-JOIN Order_Details od 
-    ON o.OrderId = od.OrderId
-LEFT JOIN Payments p
-    ON o.OrderId = p.OrderId
-GROUP BY o.OrderId""").fetchall()
+    SUM(od.Quantity * od.UnitPrice) as TotalAmount,
+    SUM(od.Quantity) as TotalItems,
+    p.Status as PaymentStatus,
+    p.PaymentMethod
+from Orders o
+join Users u 
+    on o.UserId = u.UserId
+join Order_Details od 
+    on o.OrderId = od.OrderId
+left join Payments p
+    on o.OrderId = p.OrderId
+group by o.OrderId,o.OrderDate,u.FirstName,u.LastName,p.Status,p.PaymentMethod
+""").fetchall()
     conn.close()
     return [dict(order) for order in orders]
+
+def get_categories_with_more_than_three_products():
+    conn = get_connection()
+    categories = conn.execute(""" select c.CategoryName ,p.CategoryId,count(p.ProductId) as totalProducts from Products p inner join Categories c on p.CategoryId=c.CategoryId 
+group by c.CategoryId,c.CategoryName having totalProducts>3 """).fetchall()
+    conn.close()
+    return [dict(category) for category in categories]
+
+def get_total_amount_by_category():
+    conn = get_connection()
+    categories = conn.execute(""" select c.CategoryName,c.CategoryId ,Sum(od.UnitPrice * od.Quantity) as totalAmount from Categories c 
+left join Products p on c.CategoryId=p.CategoryId 
+left join Order_Details od on od.ProductId=p.ProductId 
+group by c.CategoryId,c.CategoryName
+""").fetchall()
+    conn.close()
+    return [dict(category) for category in categories]
+
+
+
+    
