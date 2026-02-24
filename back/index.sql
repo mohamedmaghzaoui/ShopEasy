@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Categories (
     CategoryName TEXT NOT NULL
 );
 
--- products table
+-- products tablex
 CREATE TABLE IF NOT EXISTS Products (
     ProductId INTEGER PRIMARY KEY AUTOINCREMENT,
     ProductName TEXT NOT NULL,

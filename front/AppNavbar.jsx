@@ -5,7 +5,7 @@ export const AppNavbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">MyApp</Link>
+        <Link className="navbar-brand" to="/">ShopEasy</Link>
         <button
           className="navbar-toggler"
           type="button"

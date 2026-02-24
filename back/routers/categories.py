@@ -1,5 +1,7 @@
 from fastapi import APIRouter,HTTPException
 import crud.category as category_crud
+import query.queries as queries
+
 
 from model import CategoryRequest
 
@@ -8,7 +10,15 @@ router = APIRouter(
     tags=["Categories"]
 )
 
+#query
 
+@router.get("/with-more-than-three-products")
+def read_categories_query_route():
+    return queries.get_categories_with_more_than_three_products()
+
+@router.get("/total-amount")
+def rad_total_amount_by_category():
+    return queries.get_total_amount_by_category()
 
 #crud
 @router.get("/")

@@ -4,10 +4,13 @@ import crud.product as product_crud
 from model import ProductRequest
 import query.queries as queries
 
+
 router = APIRouter(
     prefix="/products",
     tags=["Products"]
 )
+
+
 
 #query
 @router.get("/with-categories")
