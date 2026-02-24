@@ -45,7 +45,7 @@ export const AppNavbar = () => {
               <Link className="nav-link" to="/analyse">Analyse</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/analyse">Métier</Link>
+              <Link className="nav-link" to="/buisness">Métier</Link>
             </li>
           </ul>
         </div>

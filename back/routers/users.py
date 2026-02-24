@@ -2,6 +2,7 @@ from fastapi import APIRouter,HTTPException
 import crud.user as user_crud
 from model import UserRequest  
 import query.queries as queries
+import buisness.business as business
 
 router = APIRouter(
     prefix="/users",
@@ -14,7 +15,9 @@ router = APIRouter(
 @router.get("/without-orders")
 def read_users_without_orders_route():
     return queries.get_users_without_order()
-
+@router.get("/analyse/top-clients")
+def get_top_clients_route():
+    return business.get_top_clients()
 @router.get("/")
 def read_users():
     return user_crud.get_users()
