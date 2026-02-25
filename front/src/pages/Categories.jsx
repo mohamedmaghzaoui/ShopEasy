@@ -70,7 +70,7 @@ export const Categories = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-3">{editingId ? "Edit Category" : "Add Category"}</h2>
+      <h2 className="mb-3">{editingId ? "Modifier la Catégorie" : "Ajouter une Catégorie"}</h2>
 
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-2 align-items-center">
@@ -78,7 +78,7 @@ export const Categories = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Category Name"
+              placeholder="Nom de la Catégorie"
               name="CategoryName"
               value={form.CategoryName}
               onChange={handleChange}
@@ -87,7 +87,7 @@ export const Categories = () => {
           </div>
           <div className="col-md-6">
             <button type="submit" className="btn btn-primary me-2">
-              {editingId ? "Update" : "Add"}
+              {editingId ? "Modifier" : "Ajouter"}
             </button>
             {editingId && (
               <button
@@ -105,12 +105,12 @@ export const Categories = () => {
         </div>
       </form>
 
-      <h3>Categories List</h3>
+      <h3>Liste des Catégories</h3>
       <table className="table table-bordered">
         <thead className="table-light">
           <tr>
-              <th>Category ID</th>
-            <th>Category Name</th>
+              <th>ID Catégorie</th>
+            <th>Nom de la Catégorie</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -124,13 +124,13 @@ export const Categories = () => {
                   className="btn btn-sm btn-warning me-2"
                   onClick={() => handleEdit(cat)}
                 >
-                  Edit
+                  Modifier
                 </button>
                 <button
                   className="btn btn-sm btn-danger"
                   onClick={() => handleDelete(cat.CategoryId)}
                 >
-                  Delete
+                  Supprimer
                 </button>
               </td>
             </tr>

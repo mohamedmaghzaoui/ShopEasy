@@ -68,32 +68,32 @@ export const Payments = () => {
 
   return (
     <div className="container mt-4">
-      <h3>Payments List</h3>
+      <h3>Liste des Paiements</h3>
 
       <div className="mb-3 d-flex gap-2 flex-wrap">
-        <input type="number" placeholder="OrderId" value={payment.OrderId} onChange={e => setPayment({ ...payment, OrderId: e.target.value })} />
-        <input placeholder="Payment Method" value={payment.PaymentMethod} onChange={e => setPayment({ ...payment, PaymentMethod: e.target.value })} />
-        <input type="number" placeholder="Amount" value={payment.Amount} onChange={e => setPayment({ ...payment, Amount: e.target.value })} />
-        <input type="datetime-local" placeholder="Payment Date" value={payment.PaymentDate} onChange={e => setPayment({ ...payment, PaymentDate: e.target.value })} />
-        <input placeholder="Status" value={payment.Status} onChange={e => setPayment({ ...payment, Status: e.target.value })} />
-        <button onClick={savePayment} className="btn btn-primary">{editId ? "Update" : "Add"}</button>
+        <input type="number" placeholder="ID Commande" value={payment.OrderId} onChange={e => setPayment({ ...payment, OrderId: e.target.value })} />
+        <input placeholder="Moyen de Paiement" value={payment.PaymentMethod} onChange={e => setPayment({ ...payment, PaymentMethod: e.target.value })} />
+        <input type="number" placeholder="Montant (€)" value={payment.Amount} onChange={e => setPayment({ ...payment, Amount: e.target.value })} />
+        <input type="datetime-local" placeholder="Date de Paiement" value={payment.PaymentDate} onChange={e => setPayment({ ...payment, PaymentDate: e.target.value })} />
+        <input placeholder="Statut" value={payment.Status} onChange={e => setPayment({ ...payment, Status: e.target.value })} />
+        <button onClick={savePayment} className="btn btn-primary">{editId ? "Modifier" : "Ajouter"}</button>
       </div>
 
       <table className="table table-bordered table-hover">
         <thead>
           <tr>
-            <th>Payment ID</th>
-            <th>Order ID</th>
-            <th>Method</th>
-            <th>Amount (€)</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>ID Paiement</th>
+<th>ID Commande</th>
+<th>Moyen</th>
+<th>Montant (€)</th>
+<th>Date</th>
+<th>Statut</th>
+<th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {payments.length === 0 ? (
-            <tr><td colSpan="7" className="text-center">No payments found</td></tr>
+            <tr><td colSpan="7" className="text-center">Aucun paiement trouvé</td></tr>
           ) : (
             payments.map((p) => (
               <tr key={p.PaymentId}>
@@ -102,10 +102,10 @@ export const Payments = () => {
                 <td>{p.PaymentMethod}</td>
                 <td>{p.Amount} €</td>
                 <td>{p.PaymentDate.toLocaleString()}</td>
-                <td>{p.Status || "Unpaid"}</td>
+                <td>{p.Status || "Non payé"}</td>
                 <td>
-                  <button onClick={() => editPayment(p)} className="btn btn-sm btn-warning me-2">Edit</button>
-                  <button onClick={() => deletePayment(p.PaymentId)} className="btn btn-sm btn-danger">Delete</button>
+                  <button onClick={() => editPayment(p)} className="btn btn-sm btn-warning me-2">Modifier</button>
+                  <button onClick={() => deletePayment(p.PaymentId)} className="btn btn-sm btn-danger">Supprimer</button>
                 </td>
               </tr>
             ))

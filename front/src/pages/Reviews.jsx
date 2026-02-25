@@ -74,59 +74,59 @@ export const Reviews = () => {
 
   return (
     <div className="container mt-4">
-      <h3>Reviews List</h3>
+      <h3>Liste des commantaires</h3>
 
       {/* Formulaire d'ajout / édition */}
       <div className="mb-3 d-flex gap-2 flex-wrap">
         <input
           type="number"
-          placeholder="UserId"
+          placeholder="ID Utilisateur"
           value={review.UserId}
           onChange={(e) => setReview({ ...review, UserId: e.target.value })}
         />
         <input
           type="number"
-          placeholder="ProductId"
+          placeholder="ID Produit"
           value={review.ProductId}
           onChange={(e) => setReview({ ...review, ProductId: e.target.value })}
         />
         <input
           type="number"
-          placeholder="Rating"
+          placeholder="Note "
           value={review.Rating}
           onChange={(e) => setReview({ ...review, Rating: e.target.value })}
         />
         <input
-          placeholder="Comment"
+          placeholder="Commentaire"
           value={review.Comment}
           onChange={(e) => setReview({ ...review, Comment: e.target.value })}
         />
         <input
           type="datetime-local"
-          placeholder="Created At"
+          placeholder="Date de Création"
           value={review.Created_At}
           onChange={(e) => setReview({ ...review, Created_At: e.target.value })}
         />
-        <button onClick={saveReview} className="btn btn-primary">{editId ? "Update" : "Add"}</button>
+        <button onClick={saveReview} className="btn btn-primary">{editId ? "Update" : "Ajouter"}</button>
       </div>
 
       {/* Tableau des reviews */}
       <table className="table table-bordered table-hover">
         <thead>
           <tr>
-            <th>Review ID</th>
-            <th>User ID</th>
-            <th>Product ID</th>
-            <th>Rating</th>
-            <th>Comment</th>
-            <th>Date</th>
-            <th>Actions</th>
+           <th>ID Avis</th>
+           <th>ID Utilisateur</th>
+           <th>ID Produit</th>
+           <th>Note</th>
+          <th>Commentaire</th>
+          <th>Date</th>
+          <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {reviews.length === 0 ? (
             <tr>
-              <td colSpan="7" className="text-center">No reviews found</td>
+              <td colSpan="7" className="text-center">Aucun commentaire trouvé</td>
             </tr>
           ) : (
             reviews.map((r) => (
@@ -138,8 +138,8 @@ export const Reviews = () => {
                 <td>{r.Comment}</td>
                 <td>{new Date(r.Created_At).toLocaleString()}</td>
                 <td>
-                  <button onClick={() => editReview(r)} className="btn btn-sm btn-warning me-2">Edit</button>
-                  <button onClick={() => deleteReview(r.ReviewId)} className="btn btn-sm btn-danger">Delete</button>
+                  <button onClick={() => editReview(r)} className="btn btn-sm btn-warning me-2">Modifier</button>
+                  <button onClick={() => deleteReview(r.ReviewId)} className="btn btn-sm btn-danger">Supprimer</button>
                 </td>
               </tr>
             ))
