@@ -3,6 +3,7 @@ from fastapi import APIRouter, HTTPException
 import crud.product as product_crud
 from model import ProductRequest
 import query.queries as queries
+import buisness.business as business
 
 
 router = APIRouter(
@@ -11,6 +12,12 @@ router = APIRouter(
 )
 
 
+#buisness
+
+
+@router.get("/top-three-products")
+def read_top_three_products():
+    return business.get_top_products()
 
 #query
 @router.get("/with-categories")

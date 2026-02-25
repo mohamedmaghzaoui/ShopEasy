@@ -13,3 +13,15 @@ JOIN Order_Details od
 GROUP BY u.UserId
 ORDER BY TotalSpent DESC
 LIMIT 5;
+
+
+
+
+
+--top 3 most bought products  
+select  p.ProductId,p.ProductName,SUM(od.Quantity) as TotalVendu
+from Products p
+join Order_Details od on p.ProductId = od.ProductId
+group by p.ProductId, p.ProductName
+ORDER BY TotalVendu DESC
+LIMIT 3
