@@ -79,9 +79,9 @@ const fetchUsersWithoutOrders = async () => {
       <table className="table table-bordered table-hover">
         <thead className="table-light">
           <tr>
-              <th>Category ID</th>
-            <th>Category Name</th>
-            <th>Total Products</th>
+              <th>ID Catégorie</th>
+            <th>Nom de la Catégorie</th>
+            <th>Total des Produits</th>
             
           </tr>
         </thead>
@@ -102,9 +102,9 @@ const fetchUsersWithoutOrders = async () => {
       <table className="table table-bordered table-hover">
         <thead className="table-light">
           <tr>
-              <th>Category ID</th>
-            <th>Category Name</th>
-            <th>Total Amount</th>
+              <th>ID Catégorie</th>
+            <th>Nom de la Catégorie</th>
+            <th>Montant Total</th>
             
           </tr>
         </thead>

@@ -75,29 +75,29 @@ export const Users = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4">{editingId ? "Edit r" : "Ajouter un utilisateur"}</h2>
+      <h2 className="mb-4">{editingId ? "Modifier" : "Ajouter un utilisateur"}</h2>
 
      
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="row g-2">
           <div className="col-md-2">
-            <input  type="text" className="form-control" placeholder="First Name" name="FirstName" value={form.FirstName} onChange={handleChange} required />
+            <input  type="text" className="form-control" placeholder="Prénom" name="FirstName" value={form.FirstName} onChange={handleChange} required />
           </div>
           <div className="col-md-2">
-            <input   type="text" className="form-control" placeholder="Last Name" name="LastName" value={form.LastName} onChange={handleChange} required />
+            <input   type="text" className="form-control" placeholder="Nom" name="LastName" value={form.LastName} onChange={handleChange} required />
           </div>
           <div className="col-md-3">
             <input  type="email" className="form-control" placeholder="Email" name="Email" value={form.Email} onChange={handleChange} required />
           </div>
           <div className="col-md-3">
-            <input  type="text" className="form-control" placeholder="Address" name="Address" value={form.Address} onChange={handleChange} />
+            <input  type="text" className="form-control" placeholder="Addresse" name="Addresse" value={form.Address} onChange={handleChange} />
           </div>
           <div className="col-md-2">
-            <input type="text" className="form-control" placeholder="Phone" name="Phone" value={form.Phone} onChange={handleChange} />
+            <input type="text" className="form-control" placeholder="Téléphone" name="téléphone" value={form.Phone} onChange={handleChange} />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary mt-2">{editingId ? "Update" : "Add"}</button>
-        {editingId && <button type="button" className="btn btn-secondary mt-2 ms-2" onClick={() => { setForm({ FirstName: "", LastName: "", Email: "", Address: "", Phone: "" }); setEditingId(null); }}>Cancel</button>}
+        <button type="submit" className="btn btn-primary mt-2">{editingId ? "Modifier" : "Ajouter"}</button>
+        {editingId && <button type="button" className="btn btn-secondary mt-2 ms-2" onClick={() => { setForm({ FirstName: "", LastName: "", Email: "", Address: "", Phone: "" }); setEditingId(null); }}>Annuler</button>}
       </form>
 
     
@@ -109,7 +109,7 @@ export const Users = () => {
             <th>Prénom</th>
             <th>Nom</th>
             <th>Email</th>
-            <th>Address</th>
+            <th>Addresse</th>
             <th>telephone</th>
             <th>Actions</th>
           </tr>
@@ -124,8 +124,8 @@ export const Users = () => {
               <td>{user.Address}</td>
               <td>{user.Phone}</td>
               <td>
-                <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(user)}>Edit</button>
-                <button className="btn btn-sm btn-danger" onClick={() => handleDelete(user.UserId)}>Delete</button>
+                <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(user)}>Modifier</button>
+                <button className="btn btn-sm btn-danger" onClick={() => handleDelete(user.UserId)}>Supprimer</button>
               </td>
             </tr>
           ))}

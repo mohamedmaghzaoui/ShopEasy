@@ -21,19 +21,17 @@ export const Orders = () => {
 
   return (
     <div className="container mt-4">
-      <h3>Orders List</h3>
+      <h3>Liste des Commandes</h3>
 
       <table className="table table-bordered table-hover">
         <thead className="">
-          <tr>
-            <th>Order ID</th>
-            <th>Customer</th>
-            <th>Date</th>
-            <th>Total (€)</th>
-            <th>Total Items</th>
-            <th>Status</th>
-            <th>PaymentMethod</th>
-          </tr>
+            <th>ID Commande</th>
+<th>Client</th>
+<th>Date</th>
+<th>Montant Total (€)</th>
+<th>Nombre d'Articles</th>
+<th>Statut</th>
+<th>Moyen de Paiement</th>
         </thead>
 
         <tbody>
@@ -51,7 +49,7 @@ export const Orders = () => {
                 <td>{order.OrderDate}</td>
                 <td>{order.TotalAmount} €</td>
                 <td>{order.TotalItems}</td>
-                <td>{order.PaymentStatus || "Unpaid"}</td>
+                <td>{order.PaymentStatus || "non payé"}</td>
                 <td>{order.PaymentMethod || "-"}</td>
               </tr>
             ))

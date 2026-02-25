@@ -19,7 +19,7 @@ export default function App() {
 
       <div className="container mt-3">
         <Routes>
-          <Route path="/" element={<h2>Home page</h2>} />
+          <Route path="/" element={<h2>Page d'acceuil</h2>} />
           <Route path="/users" element={<Users />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/products" element={<Products />} />
@@ -29,7 +29,7 @@ export default function App() {
 
           <Route path="/buisness" element={<Buisness />} />
           <Route path="/analyse" element={<Analyse />} />
-          <Route path="/" element={<h2>Home page</h2>} />
+          <Route path="/" element={<h2>Page d'acceuil</h2>} />
         </Routes>
       </div>
     </Router>
