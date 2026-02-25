@@ -14,7 +14,7 @@ export const Reviews = () => {
 
   const BASE_URL = "http://127.0.0.1:8000/reviews";
 
-  // Charger toutes les reviews
+  
   const fetchReviews = async () => {
     try {
       const res = await axios.get(BASE_URL);
@@ -28,7 +28,7 @@ export const Reviews = () => {
     fetchReviews();
   }, []);
 
-  // Ajouter ou modifier une review
+  
   const saveReview = async () => {
     try {
       const payload = {
@@ -55,7 +55,7 @@ export const Reviews = () => {
     }
   };
 
-  // Supprimer une review
+
   const deleteReview = async (id) => {
     try {
       await axios.delete(`${BASE_URL}/${id}`);
@@ -65,9 +65,9 @@ export const Reviews = () => {
     }
   };
 
-  // Préparer la review pour édition
+  
   const editReview = (r) => {
-    setEditId(r.ReviewId); // Correction ici
+    setEditId(r.ReviewId); 
     const localDate = r.Created_At ? new Date(r.Created_At).toISOString().slice(0, 16) : "";
     setReview({ ...r, Created_At: localDate });
   };
@@ -76,7 +76,7 @@ export const Reviews = () => {
     <div className="container mt-4">
       <h3>Liste des commantaires</h3>
 
-      {/* Formulaire d'ajout / édition */}
+     
       <div className="mb-3 d-flex gap-2 flex-wrap">
         <input
           type="number"
@@ -110,7 +110,7 @@ export const Reviews = () => {
         <button onClick={saveReview} className="btn btn-primary">{editId ? "Update" : "Ajouter"}</button>
       </div>
 
-      {/* Tableau des reviews */}
+     
       <table className="table table-bordered table-hover">
         <thead>
           <tr>

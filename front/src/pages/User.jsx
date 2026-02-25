@@ -9,7 +9,7 @@ export const Users = () => {
   const [editingId, setEditingId] = useState(null);
 
   const UsersUrl = "http://127.0.0.1:8000/users";
-  const UsersWithoutOrdersUrl = "http://127.0.0.1:8000/users/without-orders";
+
 
   
   const fetchUsers = async () => {
