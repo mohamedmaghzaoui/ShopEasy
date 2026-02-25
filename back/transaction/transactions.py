@@ -23,7 +23,6 @@ def pay_product(UserId, ProductId, Quantity, PaymentMethod):
             INSERT INTO Orders (UserId, OrderDate)
             VALUES (?, DATE('now'))
         """, (UserId,))
-    order_id = cursor.lastrowid
 
      # add order detail
     cursor.execute("""

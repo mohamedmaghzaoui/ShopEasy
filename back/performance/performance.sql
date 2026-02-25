@@ -1,5 +1,5 @@
 
---index for this requete
+--index pour cette requette
 -- SELECT u.UserId, FirstName, LastName, Email, Address, Phone
 -- FROM Users u
 -- LEFT JOIN Orders o
@@ -10,7 +10,7 @@ CREATE INDEX idx_orders_userid ON Orders(UserId);
 
 
 
--- index for this request
+-- index pour cette  requette
 
 -- SELECT p.ProductId, p.ProductName, SUM(od.Quantity) AS TotalVendu
 -- FROM Products p

@@ -1,3 +1,6 @@
+-- Iinterprétation écrit
+--Identifie les clients qui dépensent le plus.
+--Utile pour fidéliser les meilleurs clients ou proposer des offres personnalisées.
 
 SELECT 
     u.UserId,
@@ -18,8 +21,10 @@ LIMIT 5;
 
 
 
-
---top 3 most bought products  
+ 
+-- Iinterprétation écrit
+--Montre les produits les plus achetés.
+--Permet de connaître les best-sellers et ajuster le stock ou les promotions.
 select  p.ProductId,p.ProductName,SUM(od.Quantity) as TotalVendu
 from Products p
 join Order_Details od on p.ProductId = od.ProductId
