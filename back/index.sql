@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
 --  Payments
 CREATE TABLE IF NOT EXISTS Payments (
     PaymentId INTEGER PRIMARY KEY AUTOINCREMENT,
-    OrderId INTEGER,
+    OrderId INTEGER UNIQUE,
     PaymentMethod TEXT,
     Amount REAL,
     PaymentDate TEXT,
