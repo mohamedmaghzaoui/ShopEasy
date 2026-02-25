@@ -10,6 +10,7 @@ import { Orders } from "./pages/Orders";
 import { Reviews } from "./pages/Reviews";
 import { Payments } from "./pages/Payments";
 import { Buisness } from "./pages/Buisness";
+import { Analyse } from "./pages/Analyse";
 
 export default function App() {
   return (
@@ -18,7 +19,6 @@ export default function App() {
 
       <div className="container mt-3">
         <Routes>
-          {/* Pages principales */}
           <Route path="/" element={<h2>Home page</h2>} />
           <Route path="/users" element={<Users />} />
           <Route path="/categories" element={<Categories />} />
@@ -27,8 +27,9 @@ export default function App() {
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/payments" element={<Payments />} />
 
-          {/* Page Analyse / Dashboard */}
           <Route path="/buisness" element={<Buisness />} />
+          <Route path="/analyse" element={<Analyse />} />
+          <Route path="/" element={<h2>Home page</h2>} />
         </Routes>
       </div>
     </Router>

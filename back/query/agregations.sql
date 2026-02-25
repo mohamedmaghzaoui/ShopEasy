@@ -27,7 +27,7 @@ group by c.CategoryId,c.CategoryName having totalProducts>3
 -- get total amount by category
 select c.CategoryName,c.CategoryId ,Sum(od.UnitPrice * od.Quantity) as totalAmount from Categories c 
 left join Products p on c.CategoryId=p.CategoryId 
-left join Order_Details od on od.ProductId=p.ProductId 
+inner join Order_Details od on od.ProductId=p.ProductId 
 group by c.CategoryId,c.CategoryName
 
 

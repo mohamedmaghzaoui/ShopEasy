@@ -101,7 +101,7 @@ export const Payments = () => {
                 <td>{p.OrderId}</td>
                 <td>{p.PaymentMethod}</td>
                 <td>{p.Amount} €</td>
-                <td>{new Date(p.PaymentDate).toLocaleString()}</td>
+                <td>{p.PaymentDate.toLocaleString()}</td>
                 <td>{p.Status || "Unpaid"}</td>
                 <td>
                   <button onClick={() => editPayment(p)} className="btn btn-sm btn-warning me-2">Edit</button>

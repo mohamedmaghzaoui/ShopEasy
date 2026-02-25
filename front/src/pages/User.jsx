@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
-  const [UsersWithoutOrders, setUsersWithoutOrders] = useState([]);
+
   const [form, setForm] = useState({ FirstName: "", LastName: "", Email: "", Address: "", Phone: "" });
   const [editingId, setEditingId] = useState(null);
 
@@ -17,21 +17,14 @@ export const Users = () => {
       const res = await axios.get(UsersUrl);
       setUsers(res.data);
     } catch (err) {
-      alert("error")
+      console.log(err)
     }
   };
 
-    const fetchUsersWithoutOrders = async () => {
-    try {
-      const res = await axios.get(UsersWithoutOrdersUrl);
-      setUsersWithoutOrders(res.data);
-    } catch (err) {
-      alert("error")
-    }
-  };
+
   useEffect(() => {
     fetchUsers();
-    fetchUsersWithoutOrders();
+
   }, []);
 
   
@@ -138,39 +131,6 @@ export const Users = () => {
           ))}
         </tbody>
       </table>
-
-
-
-
-
-       <h3>Utilisateurs sans commandes</h3>
-      <table className="table table-bordered">
-        <thead className="table-light">
-          <tr>
-            <th>ID</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>telephone</th>
-           
-          </tr>
-        </thead>
-        <tbody>
-          {UsersWithoutOrders.map(user => (
-            <tr key={user.UserId}>
-              <td>{user.UserId}</td>
-              <td>{user.FirstName}</td>
-              <td>{user.LastName}</td>
-              <td>{user.Email}</td>
-              <td>{user.Address}</td>
-              <td>{user.Phone}</td>
-          
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
       
     </div>
   );

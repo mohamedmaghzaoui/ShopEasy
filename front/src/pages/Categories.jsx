@@ -5,12 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const [categoriesQuery, setCategoriesQuery] = useState([]);
+  
   const [form, setForm] = useState({ CategoryName: "" });
   const [editingId, setEditingId] = useState(null);
 
   const categoryUrl = "http://127.0.0.1:8000/categories";
-  const categoryQueryUrl = "http://127.0.0.1:8000/categories/with-more-than-three-products";
+
 
 
   const fetchCategories = async () => {
@@ -18,21 +18,14 @@ export const Categories = () => {
       const res = await axios.get(categoryUrl);
       setCategories(res.data);
     } catch (err) {
-     alert("error")
-    }
-  };
-  const fetchCategoriesQuery = async () => {
-    try {
-      const res = await axios.get(categoryQueryUrl);
-      setCategoriesQuery(res.data);
-    } catch (err) {
-      alert("error")
+    console.log(err)
     }
   };
 
+
   useEffect(() => {
     fetchCategories();
-    fetchCategoriesQuery();
+  
   }, []);
 
 
@@ -54,7 +47,7 @@ export const Categories = () => {
       fetchCategories();
       
     } catch (err) {
-      alert("error")
+     console.log(err)
     }
   };
 
@@ -147,27 +140,7 @@ export const Categories = () => {
 
 
 
-      <h3>Categories avec plus de 3 produits</h3>
-      <table className="table table-bordered">
-        <thead className="table-light">
-          <tr>
-              <th>Category ID</th>
-            <th>Category Name</th>
-            <th>Total Products</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          {categoriesQuery.map(cat => (
-            <tr key={cat.CategoryId}>
-              <td>{cat.CategoryId}</td>
-              <td>{cat.CategoryName}</td>
-              <td>{cat.totalProducts}</td>
-       
-            </tr>
-          ))}
-        </tbody>
-      </table>
+ 
     </div>
   );
 };

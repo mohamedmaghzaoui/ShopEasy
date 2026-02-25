@@ -27,19 +27,24 @@ def pay_product(UserId, ProductId, Quantity, PaymentMethod):
 
      # add order detail
     cursor.execute("""
-            INSERT INTO Order_Details (OrderId, ProductId, Quantity, UnitPrice)
-            SELECT ?, ProductId, ?, Price
-            FROM Products
-            WHERE ProductId = ?
-    """, (order_id, Quantity, ProductId))
+        INSERT INTO Order_Details (OrderId, ProductId, Quantity, UnitPrice)
+        VALUES (
+            (SELECT OrderId FROM Orders ORDER BY OrderId DESC LIMIT 1),
+            ?, ?, (SELECT Price FROM Products WHERE ProductId = ?)
+        )
+    """, (ProductId, Quantity, ProductId))
 
     # add pay
     cursor.execute("""
-            INSERT INTO Payments (OrderId, PaymentMethod, Amount, PaymentDate, Status)
-            SELECT ?, ?, Price * ?, DATE('now'), 'Payé'
-            FROM Products
-            WHERE ProductId = ?
-    """, (order_id, PaymentMethod, Quantity, ProductId))
+        INSERT INTO Payments (OrderId, PaymentMethod, Amount, PaymentDate, Status)
+        VALUES (
+            (SELECT OrderId FROM Orders ORDER BY OrderId DESC LIMIT 1),
+            ?, 
+            (SELECT Price * ? FROM Products WHERE ProductId = ?),
+            DATE('now'),
+            'Payé'
+        )
+    """, (PaymentMethod, Quantity, ProductId))
    
     cursor.execute("commit")
     conn.close()
