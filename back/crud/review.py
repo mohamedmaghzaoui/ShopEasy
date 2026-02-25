@@ -10,7 +10,7 @@ def get_reviews():
 def get_review(review_id):
     conn = get_connection()
     review = conn.execute(
-        "SELECT * FROM Reviews WHERE ReviewId=?",  # corrigé ici
+        "SELECT * FROM Reviews WHERE ReviewId=?",  
         (review_id,)
     ).fetchone()
     conn.close()
@@ -31,7 +31,7 @@ def create_review(user_id, product_id, rating, comment=None, created_at=None):
 def update_review(review_id, user_id, product_id, rating, comment=None, created_at=None):
     conn = get_connection()
     conn.execute(
-        "UPDATE Reviews SET UserId=?, ProductId=?, Rating=?, Comment=?, Created_At=? WHERE ReviewId=?",  # corrigé ici
+        "UPDATE Reviews SET UserId=?, ProductId=?, Rating=?, Comment=?, Created_At=? WHERE ReviewId=?",  
         (user_id, product_id, rating, comment, created_at, review_id)
     )
     conn.commit()
@@ -39,6 +39,6 @@ def update_review(review_id, user_id, product_id, rating, comment=None, created_
 
 def delete_review(review_id):
     conn = get_connection()
-    conn.execute("DELETE FROM Reviews WHERE ReviewId=?", (review_id,))  # corrigé ici
+    conn.execute("DELETE FROM Reviews WHERE ReviewId=?", (review_id,))  
     conn.commit()
     conn.close()

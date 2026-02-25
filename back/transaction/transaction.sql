@@ -1,7 +1,6 @@
 -- L’utilisateur 1 achète 2 unités du produit 16 et paye par carte bancaire.
 
 begin;
-
 update Products
 set Stock = Stock - 2
 where ProductId = 16
@@ -28,3 +27,11 @@ values (
 );
 
 commit;
+
+
+
+
+
+
+
+

@@ -18,6 +18,7 @@ LIMIT 5;
 
 
 
+
 --top 3 most bought products  
 select  p.ProductId,p.ProductName,SUM(od.Quantity) as TotalVendu
 from Products p
